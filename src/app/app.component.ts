@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Spartan } from './spartan';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TDF';
+  spartanModel = new Spartan('Rob','rob@bank.com','777770000',true);
 }
