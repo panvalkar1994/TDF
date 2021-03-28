@@ -8,17 +8,25 @@
 
     <div class="form-group">
       <label>Name</label>
-      <input type="text" class="form-control" name="spartanName" [(ngModel)]="spartanModel.spartanName">
+      <input required type="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control" name="spartanName" [(ngModel)]="spartanModel.spartanName">
+      <small [class.d-none]="name.valid || name.untouched" class="text-danger">Name is required</small>
     </div>
 
     <div class="form-group">
       <label>Email</label>
-      <input type="email" class="form-control" name="email" [(ngModel)]="spartanModel.email">
+      <input required type="email" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" class="form-control" name="email" [(ngModel)]="spartanModel.email">
+    </div>
+    <div *ngIf="email.errors && (email.invalid || email.touched)">
+      <small class="text-danger" *ngIf="email.errors.required">Email is required</small>
     </div>
 
     <div class="form-group">
       <label>Phone</label>
-      <input type="tel" class="form-control" name="phone" [(ngModel)]="spartanModel.phone">
+      <input required type="tel" #phone="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" class="form-control" name="phone" [(ngModel)]="spartanModel.phone">
+    </div>
+    <div *ngIf="phone.errors && (phone.invalid || phone.touched)">
+        <small class="text-danger" *ngIf="phone.errors.required">Phone number is required</small>
+        <small class="text-danger" *ngIf="phone.errors.pattern">Phone number must be 10 digits</small>
     </div>
 
     <div ngModelGroup="address">
@@ -38,6 +46,15 @@
         <input type="text" class="form-control" name="state" ngModel>
       </div>
 
+    </div>
+
+    <div class="form-group">
+      <label>Shift Time</label>
+      <select required #shiftTime="ngModel" [class.is-invalid]="shiftTime.invalid && shiftTime.touched" name="shiftTime" id="" class="form-control" ngModel>
+        <option value="morning">Morning</option>
+        <option value="evening">Evening</option>
+      </select>
+      <small class="text-danger" [class.d-none]="shiftTime.valid || shiftTime.untouched">Please choose a shift</small>
     </div>
 
     <div class="form-check">
