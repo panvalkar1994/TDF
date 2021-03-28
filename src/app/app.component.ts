@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EnrollmentService } from './enrollment.service';
 import { Spartan } from './spartan';
 
 @Component({
@@ -7,6 +8,17 @@ import { Spartan } from './spartan';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'TDF';
+  submitted = false;
   spartanModel = new Spartan('Rob','rob@bank.com','777770000',true);
+
+  constructor(private _enrollmentService:EnrollmentService){}
+
+  onSubmit(){
+    this._enrollmentService.enroll(this.spartanModel)
+      .subscribe(
+        data=> console.log('Success!', data),
+        error=> console.log('error',error)
+      );
+    this.submitted = true;
+  }
 }

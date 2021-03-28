@@ -1,10 +1,10 @@
 <div class="container-fluid">
   <h1>Spartan Registration</h1>
-  <form #spartanForm="ngForm">
-    {{spartanForm.value | json}}
+  <form #spartanForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!submitted">
+    <!-- {{spartanForm.value | json}}
     <hr>
     {{spartanModel | json}}
-    <hr>
+    <hr> -->
 
     <div class="form-group">
       <label>Name</label>
@@ -65,4 +65,8 @@
     <button [disabled]="spartanForm.form.invalid" type="submit" class="btn btn-primary">Submit</button>
 
   </form>
+
+  <div [class.d-none]="!submitted">
+    <h2>Your enrollment details saved sucessfully</h2>
+  </div>
 </div>
