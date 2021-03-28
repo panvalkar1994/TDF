@@ -10,6 +10,7 @@ import { Spartan } from './spartan';
 export class AppComponent {
   submitted = false;
   spartanModel = new Spartan('Rob','rob@bank.com','777770000',true);
+  errorMsg = ''
 
   constructor(private _enrollmentService:EnrollmentService){}
 
@@ -17,7 +18,7 @@ export class AppComponent {
     this._enrollmentService.enroll(this.spartanModel)
       .subscribe(
         data=> console.log('Success!', data),
-        error=> console.log('error',error)
+        error=> this.errorMsg = error.statusText
       );
     this.submitted = true;
   }
