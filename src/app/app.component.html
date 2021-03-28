@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <h1>Spartan Registration</h1>
-  <form #spartanForm="ngForm">
+  <form #spartanForm="ngForm" (ngSubmit)="onSubmit()">
     {{spartanForm.value | json}}
     <hr>
     {{spartanModel | json}}
