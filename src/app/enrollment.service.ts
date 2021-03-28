@@ -6,7 +6,7 @@ import { Spartan } from './spartan';
   providedIn: 'root'
 })
 export class EnrollmentService {
-  _url = '';
+  _url = 'http://localhost:3000/enroll';
   constructor(private _http:HttpClient) { }
 
   enroll(spartan:Spartan){
