@@ -1,5 +1,8 @@
 <div class="container-fluid">
   <h1>Spartan Registration</h1>
+  <div class="alert alert-danger" *ngIf="errorMsg">
+    {{errorMsg}}
+  </div>
   <form #spartanForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!submitted">
     <!-- {{spartanForm.value | json}}
     <hr>
@@ -66,7 +69,7 @@
 
   </form>
 
-  <div [class.d-none]="!submitted">
+  <div *ngIf="!errorMsg" [class.d-none]="!submitted">
     <h2>Your enrollment details saved sucessfully</h2>
   </div>
 </div>
